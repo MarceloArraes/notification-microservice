@@ -1,8 +1,7 @@
-import { Controller, Get, Post, Body, Delete } from '@nestjs/common';
-// import { PrismaService } from '../../prisma.service';
-// import { randomUUID } from 'node:crypto';
+import { Controller, Post, Body } from '@nestjs/common';
 import { CreateNotificationBody } from '../dtos/create-notification-body';
 import { SendNotification } from 'src/application/use-cases/send-notification';
+import { NotificationViewModel } from '../view-models/notification-view-model';
 
 @Controller('notifications')
 export class NotificationsController {
@@ -26,7 +25,6 @@ export class NotificationsController {
   @Post()
   async create(@Body() body: CreateNotificationBody) {
     const { recipientId, content, category } = body;
-    console.log('Saving...', body);
 
     const { notification } = await this.sendNotification.execute({
       content,
@@ -34,6 +32,6 @@ export class NotificationsController {
       recipientId,
     });
 
-    return { notification };
+    return { notification: NotificationViewModel.toHTTP(notification) };
   }
 }
