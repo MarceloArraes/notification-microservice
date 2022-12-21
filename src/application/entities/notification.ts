@@ -48,6 +48,14 @@ export class Notification {
     return this.props.readAt;
   }
 
+  public cancel() {
+    this.props.canceledAt = new Date();
+  }
+
+  public get canceledAt(): Date | null | undefined {
+    return this.props.canceledAt;
+  }
+
   public set category(category: string) {
     this.props.category = category;
   }
