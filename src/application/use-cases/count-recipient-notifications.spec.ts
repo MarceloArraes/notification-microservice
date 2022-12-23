@@ -3,6 +3,7 @@ import { InMemoryNotificationsRepository } from '../../../test/repositories/in-m
 import { Notification } from '../entities/notification';
 import { Content } from '../entities/notification-content';
 import { CountRecipientNotifications } from './count-recipient-notifications';
+import { makeNotification } from '../../../test/factories/notification-factory';
 
 describe('Count recipient notifications', () => {
   it('should be able to count the recipient notifications', async () => {
@@ -10,14 +11,10 @@ describe('Count recipient notifications', () => {
     const countRecipientNotifications = new CountRecipientNotifications(
       notificationsRepository,
     );
-    const notification = new Notification({
-      category: 'social fin1',
-      content: new Content('something something'),
+    const notification = makeNotification({
       recipientId: 'example-recipient-id',
     });
-    const notification2 = new Notification({
-      category: 'social fin2',
-      content: new Content('something something'),
+    const notification2 = makeNotification({
       recipientId: 'example-recipient-id',
     });
 
