@@ -15,7 +15,7 @@ describe('Cancel notification', () => {
       notificationId: notification.id,
     });
 
-    expect(notificationsRepository.notifications[0].canceledAt).toEqual(
+    expect(notificationsRepository.notifications[0].cancelAt).toEqual(
       expect.any(Date),
     );
     expect(notification).toBeTruthy();
